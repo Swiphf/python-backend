@@ -1,18 +1,34 @@
+# from flask import Flask, jsonify, request
+
+# app = Flask(__name__)
+
+# @app.route('/backend/api', methods=['POST'])
+# def write_user_age_to_db():
+    # try:
+        # data = request.json
+        # user = data.get('user')
+        # age = data.get('age')
+        
+        # # return jsonify(data)
+    # except Exception as e:
+        # # Return an error message if an exception occurred
+        # return jsonify({"error": str(e)}), 500
+
+# if __name__ == '__main__':
+    # app.run(host='0.0.0.0', port=5000)  # Run the Flask app on port 5000
+    
+    
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/backend/api', methods=['POST'])
-def receive_data():
+@app.route('/', methods=['POST'])
+def write_user_age_to_db():
     try:
-        # Get data from the request body
         data = request.json
-        # Process the received data (you can perform any operations here)
-        # For demonstration, we'll just echo back the received data
-        return jsonify(data)
+        user = data.get('user')
+        age = data.get('age')
+        
+        return jsonify(data)  # Return a response
     except Exception as e:
-        # Return an error message if an exception occurred
-        return jsonify({"error": str(e)}), 500
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)  # Run the Flask app on port 5001
+        return jsonify({"error": str(e)}), 500  # Return an error message
